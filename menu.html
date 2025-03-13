@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lan="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewpoint" content="width=device-width initial-scale=1.0">
+        <title>menu</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css">
+    <style>
+        :root {
+    --primary-color: #ff9800; 
+    --bg-color-1: #ffffff; 
+    --bg-color-2: #f3f3f3;
+    --text-color: #333; 
+}
+
+        .flex-row{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+        }
+        .section-heading{
+            text-align: center;
+            margin: 30px 0;
+        }
+        .square-wrapper{
+            position: relative;
+            margin: 1rem;
+        }
+        .square-wrapper::after,
+        .square-wrapper::before{
+            content: "";
+            display: inline-block;
+            margin: 0 0.5rem;
+            width: 100px;
+            height:2px;
+            background-color: var(--primary-color);
+
+        }
+        #menu{
+            padding-bottom: 70px;
+            background-color: var(--bg-color-2);
+            width:100%;
+        }
+        .menu-tabs{
+            justify-content: center;
+            margin: 20px 100px;
+            width: 75%;
+            padding: 0 1.5rem;
+            flex-wrap: nowrap;
+            text-align: center;
+        }
+        .menu-tab-items{
+           
+            font-size: 17px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            margin: 8px 15px;
+            width: 50%;
+            padding: 20px 0;
+            transition: all 0.3s ease-in-out;
+            background-color: var(--bg-color-1);
+            border-radius: 5px;
+            border:1px solid var(--primary-color);
+            position:relative;
+        }
+        .menu-tab-items i{
+            font-size: 40px;
+            transition: all 0.3s ease-in-out;
+            color:red;
+            margin-bottom: 10px;
+            pointer-events: none;
+        }
+        .menu-tab-items span{
+            pointer-events: none;
+            font-size: 20px;
+            transition: all 0.3s ease-in-out;
+            font-weight: 500;
+            color:black;
+        }
+        .menu-tab-items:hover,
+        .menu-tab-items.active{
+            background-color: red;
+        }
+        .menu-tab-items:hover span,
+        .menu-tab-items.active span{
+            color:white;
+        }
+        .menu-tab-items:hover i,
+        .menu-tab-items.active i{
+            color:white;
+        }
+        .menu-tab-items::after{
+            content:"";
+            position:absolute;
+            bottom: -10px;
+            left:50px;
+            transform: translateX(-50%)rotate(45deg);
+            width: 28px;
+            height: 28px;
+            background-color: red;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .menu-tab-items.active::after{
+            opacity: 1;
+            visibility: visible;
+        }
+        .menu-content{
+            display: none;
+          padding: 0 1rem;
+        }
+.menu-content.show{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+     gap:10px;
+     padding: 0 1rem;
+animation: fade-in 0.5s ease;
+}
+@keyframes fade-in {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+    
+}
+        .menu-item{
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 10px 15px;
+            cursor: pointer;
+           margin: 0;
+            transition: all 0.1s ease-in-out;
+        }
+    .menu-item:hover{
+        transform: scale(1.05);
+    }
+ .menu-item .menu-item-inner .food-img{
+               width: 130px;
+               display: inline-block;
+               margin-right: 15px;
+        }
+.menu-item .menu-item-inner .food-img img {
+    width: 100%;
+    height: auto;    
+}
+.menu-item .menu-item-inner{
+    background-color: var(--bg-color-1);
+    display: flex;
+    align-items: center;
+    border:1px solid gray;
+    padding:10px;
+    width:75%; 
+    height: 120px;
+    box-sizing: border-box;
+}
+.menu-item .menu-item-inner .text{
+    width: 100%;
+}
+.menu-item .menu-item-inner .text .dish-details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:100%;
+}
+.menu-item .menu-item-inner .text .dish-details h2{
+    white-space: nowrap;
+    margin:0;
+}
+.menu-item .menu-item-inner .text .dish-details .line{
+    width:100%;
+    margin: 0 10px;
+    height: 1px;
+    background-color: #333;
+}
+.menu-item .menu-item-inner .text .dish-details .price{
+    color:red;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    margin:0;
+    font-weight: bold;
+}
+
+    </style>
+    </head>
+    <body>
+    <section id="menu" class="menu-section">
+            <div class="section-heading">
+                <h1>Our Special Menu</h1>
+                <div class="square-wrapper flex-row">
+                <div class="square"></div>   
+                <div class="square"></div> 
+                <div class="square"></div>  
+                </div>
+            </div>
+            <div class="menu-tabs flex-row">
+                <div class="menu-tab-items active" data-target ="#main-dishes">
+                    <i class="bx bxs-bowl-hot"></i>
+                    <span>Main Dishes</span>
+                </div>
+                <div class="menu-tab-items" data-target ="#starters">
+                    <i class="bx bx-restaurant"></i>
+                    <span>Starters</span>
+                </div>
+                <div class="menu-tab-items" data-target ="#desserts">
+                    <i class="bx bxs-popsicle"></i>
+                    <span>Desserts</span>
+                </div>
+            </div>
+        <div id="main-dishes" class="menu-content show">
+            <div class="menu-item">
+                <div class="menu-item-inner">
+                    <div class="food-img">
+                        <img src="Chettinad-biryani.webp" alt="#">
+                    </div>
+                    <div class="text">
+                        <div class="dish-details">
+                            <h2>Main dish</h2>
+                            <div class="line"></div>
+                            <span class="price">&#8377;200</span>
+                        </div>
+                        <div class="description">
+                            <p>Seasoned and handcarved to order</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-inner">
+                    <div class="food-img">
+                        <img src="Chicken-Biryani.jpg" alt="#">
+                    </div>
+                    <div class="text">
+                        <div class="dish-details">
+                            <h2>Main dish</h2>
+                            <div class="line"></div>
+                            <span class="price">&#8377;290</span>
+                        </div>
+                        <div class="description">
+                            <p>Seasoned and handcarved to order</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-inner">
+                    <div class="food-img">
+                        <img src="Mutton-Biryani.jpg" alt="#">
+                    </div>
+                    <div class="text">
+                        <div class="dish-details">
+                            <h2>Main dish</h2>
+                            <div class="line"></div>
+                            <span class="price">&#8377;250</span>
+                        </div>
+                        <div class="description">
+                            <p>Seasoned and handcarved to order</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-item-inner">
+                    <div class="food-img">
+                        <img src="veg.jpg" alt="#">
+                    </div>
+                    <div class="text">
+                        <div class="dish-details">
+                            <h2>Main dish</h2>
+                            <div class="line"></div>
+                            <span class="price">&#8377;180</span>
+                        </div>
+                        <div class="description">
+                            <p>Seasoned and handcarved to order</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="starters" class="menu-content">
+            <div class="menu-item">
+                <div class="menu-item-inner">
+                    <div class="food-img">
+                        <img src="Veg-Starters.jpg" alt="#">
+                    </div>
+                    <div class="text">
+                        <div class="dish-details">
+                            <h2>Starters</h2>
+                            <div class="line"></div>
+                            <span class="price">&#8377;80</span>
+                        </div>
+                        <div class="description">
+                            <p>Seasoned and handcarved to order</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-inner">
+                    <div class="food-img">
+                        <img src="seefood.png" alt="#">
+                    </div>
+                    <div class="text">
+                        <div class="dish-details">
+                            <h2>Starters</h2>
+                            <div class="line"></div>
+                            <span class="price">&#8377;90</span>
+                        </div>
+                        <div class="description">
+                            <p>Seasoned and handcarved to order</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-inner">
+                    <div class="food-img">
+                        <img src="starters1.jpg" alt="#">
+                    </div>
+                    <div class="text">
+                        <div class="dish-details">
+                            <h2>Starters</h2>
+                            <div class="line"></div>
+                            <span class="price">&#8377;120</span>
+                        </div>
+                        <div class="description">
+                            <p>Seasoned and handcarved to order</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-inner">
+                    <div class="food-img">
+                        <img src="Veg-Starters.jpg" alt="#">
+                    </div>
+                    <div class="text">
+                        <div class="dish-details">
+                            <h2>Starters</h2>
+                            <div class="line"></div>
+                            <span class="price">&#8377;93</span>
+                        </div>
+                        <div class="description">
+                            <p>Seasoned and handcarved to order</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="desserts" class="menu-content">
+            <div class="menu-item">
+                <div class="menu-item-inner">
+                    <div class="food-img">
+                        <img src="des2.jpg" alt="#">
+                    </div>
+                    <div class="text">
+                        <div class="dish-details">
+                            <h2>Desserts</h2>
+                            <div class="line"></div>
+                            <span class="price">&#8377;69</span>
+                        </div>
+                        <div class="description">
+                            <p>Seasoned and handcarved to order</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-inner">
+                    <div class="food-img">
+                        <img src="des1.webp" alt="#">
+                    </div>
+                    <div class="text">
+                        <div class="dish-details">
+                            <h2>Desserts</h2>
+                            <div class="line"></div>
+                            <span class="price">&#8377;75</span>
+                        </div>
+                        <div class="description">
+                            <p>Seasoned and handcarved to order</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-inner">
+                    <div class="food-img">
+                        <img src="des2.jpg" alt="#">
+                    </div>
+                    <div class="text">
+                        <div class="dish-details">
+                            <h2>Desserts</h2>
+                            <div class="line"></div>
+                            <span class="price">&#8377;100</span>
+                        </div>
+                        <div class="description">
+                            <p>Seasoned and handcarved to order</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-inner">
+                    <div class="food-img">
+                        <img src="des1.webp" alt="#">
+                    </div>
+                    <div class="text">
+                        <div class="dish-details">
+                            <h2>Desserts</h2>
+                            <div class="line"></div>
+                            <span class="price">&#8377;92</span>
+                        </div>
+                        <div class="description">
+                            <p>Seasoned and handcarved to order</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <script>
+            let menutab = document.querySelector('.menu-tabs');
+menutab.addEventListener('click',function(e) {
+if(e.target.classList.contains('menu-tab-items')&& !e.target.classList.contains('active')){
+    const target = e.target.getAttribute("data-target");
+    menutab.querySelector('.active').classList.remove('active');
+    e.target.classList.add("active");
+    let menusec = document.querySelector(".menu-section");
+    menusec.querySelector(".menu-content.show").classList.remove("show");
+    menusec.querySelector(target).classList.add("show");
+    
+}
+else{
+    return;
+}
+})
+        </script>
+    </body>
+</html>
